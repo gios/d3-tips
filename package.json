@@ -1,0 +1,21 @@
+{
+  "name": "d3-tips",
+  "version": "0.0.2",
+  "description": "Practical repository for d3 development",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gios/d3-tips.git"
+  },
+  "author": "Gios",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gios/d3-tips/issues"
+  },
+  "homepage": "https://github.com/gios/d3-tips#readme"
+}
