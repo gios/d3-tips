@@ -39,7 +39,7 @@ d3.csv("basic-graph/data.csv", function(error, data) {
 
     // Scale the range of the data
     x.domain(d3.extent(data, function(d) { return d.date; }));
-    y.domain(d3.extent(data, function(d) { return d.close; }));
+    y.domain([0, d3.max(data, function(d) { return d.close; })]);
 
     // Add the valueline path.
     svg.append("path")
@@ -51,9 +51,33 @@ d3.csv("basic-graph/data.csv", function(error, data) {
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
         .call(xAxis);
+        
+    // Add the Y Title Date
+    svg.append("text")
+        .attr("transform", "translate(" + (width / 2) + "," + (height + margin.bottom) + ")")
+        .style("text-anchor", "middle")
+        .text("Date");
 
     // Add the Y Axis
     svg.append("g")
         .attr("class", "y axis")
         .call(yAxis);
+    
+    // Title
+    svg.append("text")
+        .attr("x", (width / 2))
+        .attr("y", 0 - (margin.top / 2))
+        .attr("text-anchor", "middle")
+        .style("font-size", "16px")
+        .style("text-decoration", "underline")
+        .text("Value vs Date Graph");
+        
+    // Add the Y Title Value
+    svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left)
+        .attr("x", 0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text("Value");
 });
