@@ -18,9 +18,10 @@ var yAxis = d3.svg.axis().scale(y)
 
 // Define the line
 var valueline = d3.svg.line()
+    .interpolate("basis")
     .x(function(d) { return x(d.date); })
     .y(function(d) { return y(d.close); });
-    
+
 // Adds the svg canvas
 var svg = d3.select("body")
     .append("svg")
@@ -29,9 +30,23 @@ var svg = d3.select("body")
     .append("g")
         .attr("transform", 
               "translate(" + margin.left + "," + margin.top + ")");
+              
+function make_x_axis() {
+    return d3.svg.axis()
+        .scale(x)
+        .orient("bottom")
+        .ticks(5);
+}
+
+function make_y_axis() {
+    return d3.svg.axis()
+        .scale(y)
+        .orient("left")
+        .ticks(5);
+}
 
 // Get the data
-d3.csv("basic-graph/data.csv", function(error, data) {
+d3.csv("src/basic-graph/data.csv", function(error, data) {
     data.forEach(function(d) {
         d.date = parseDate(d.date);
         d.close = +d.close;
