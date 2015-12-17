@@ -45,6 +45,21 @@ function make_y_axis() {
         .ticks(5);
 }
 
+svg.append("g")
+    .attr("class", "grid")
+    .attr("transform", "translate(0," + height + ")")
+    .call(make_x_axis()
+        .tickSize(-height, 0, 0)
+        .tickFormat("")
+    )
+    
+svg.append("g")
+    .attr("class", "grid")
+    .call(make_y_axis()
+        .tickSize(-width, 0, 0)
+        .tickFormat("")
+    )
+
 // Get the data
 d3.csv("src/basic-graph/data.csv", function(error, data) {
     data.forEach(function(d) {
